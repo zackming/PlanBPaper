@@ -61,7 +61,7 @@ We could find an optimized $\beta$ to help better estimate $A^*$
 
 As @ClewlowStrickland point out, looking to hedging instruments that reduce the variance of overall portfolio cash-flow variance turns out to be an excellent strategy for identifying valid control variates. As such, they employ the Delta and Gamma from the well-known Black-Scholes Merton model. Considering when they sold a call option, when the stock price increases, they would lose lots of money, because the customer would execute the call option. The Market-maker will have a large standard deviation in their whole portfolio. Instead, Market-makers could buy Delta shares when they sold a call option, if the stock price went up, they could sell those shares to customers when they bought at a lower price. If the stock price decreases, the customers would not execute the option, so Market-makers could keep the premium. When the Market-makers applied Delta and Gamma for control variates, they will reduce their portfolio's sample variance. 
 
-![This is the result by comparing Blach-Schoels Merton option price with Monte Carlo methods.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\Result.PNG)
+![This is the result by comparing Blach-Schoels Merton option price with Monte Carlo methods.](images/Result.PNG)
 
 # Section 2 Black-Scholes Merton model
 
@@ -171,11 +171,11 @@ The main purpose for the Delta-hedging is to help market-makers to maintain a De
 
 And now from Clewlow and Carverhill, we are going to see how they using Greeks as control variates to reduce the standard deviation and improve the efficiency. 
 
-![This is the call payoff from Monte Carlo simulation, used 252 time steps, and 100 simulation.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\Naive.PNG)
+![This is the call payoff from Monte Carlo simulation, used 252 time steps, and 100 simulation.](images/Naive.PNG)
 
-![This is the call payoff from Delta-Hedged Monte Carlo simulation, used 252 time steps, and 100 simulation.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\DeltaHedging.PNG)
+![This is the call payoff from Delta-Hedged Monte Carlo simulation, used 252 time steps, and 100 simulation.](images/DeltaHedging.PNG)
 
-![This is the call payoff from Delta-Hedged Monte Carlo simulation, used 252 time steps, and 100 simulation.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\DeltaGammaHedging.PNG)
+![This is the call payoff from Delta-Hedged Monte Carlo simulation, used 252 time steps, and 100 simulation.](images/DeltaGammaHedging.PNG)
 
 From the graph above, we could easily find after using Delta as control variate, the result of call payoff has an obvious improvement. The sample has a smaller standard deviation, and after using Delta-Gamma as control variates, the standard deviation even gets smaller. If you only using Monte Carlo simulation without control variates, you will need a 100 times larger sample size to get the standard deviation as same as the Delta-hedging Monte Carlo. 
 
@@ -285,29 +285,15 @@ $$
 Those pictures are the results from the Jump world, and we could see control variates did a great job to reduce the variance of the sample. 
 ![This is the call payoff from the Jump world, used 252 time steps, and 100 simulation.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\Jump.png)
 
-![This is the call payoff from Jump world with Delta-hedging, used 252 time steps, and 100 simulation.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\DeltaHedgingJump.PNG)
+![This is the call payoff from Jump world with Delta-hedging, used 252 time steps, and 100 simulation.](images/DeltaHedgingJump.PNG)
 
 
-![This is the call payoff from Jump world with Delta-Gamma-hedging, used 252 time steps, and 100 simulation.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\DeltaGammaHedgingJump.PNG)
+![This is the call payoff from Jump world with Delta-Gamma-hedging, used 252 time steps, and 100 simulation.](images/DeltaGammaHedgingJump.PNG)
 
 
 # Conclusion
 
 Clewlow and Carverhill bring out the idea that using control variates to reduce the standard error, also improved the efficiency of Monte Carlo simulation, combined both perspectives from Finance and Computer Science. My project is only replicated the process for European call option, but control variates also good for more complicated path dependent options, like Asian option, look-back option. In the future, I am going to combine stochastic volatility to test the real market data. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--
 # References
