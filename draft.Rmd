@@ -1,5 +1,5 @@
 ---
-title: "Implementing Option Pricing Modle"
+title: "Implementing Option Pricing Model"
 author:
 - affiliation: Utah State University
   name: Zhao Ming
