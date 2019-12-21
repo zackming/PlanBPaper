@@ -68,13 +68,13 @@ As @ClewlowStrickland point out, looking to hedging instruments that reduce the 
 This is Black-Scholes Merton formula for a European call option. 
 
 $$
-C(S, K, \sigma,r, T, \delta) = S e^{-\delta T} N(d_{1}) - K e^{-r T} N(d_{2})
+C(S, K, \sigma, r, T, \delta) = S e^{-\delta T} N(d_{1}) - K e^{-r T} N(d_{2})
 $$
 $$
-\begin{align}
-d_{1} &= \frac{\ln{(S/K)} + (r - \delta + \frac{1}{2} \sigma^{2}) T}{\sigma \sqrt{T}} \\
-d_{2} &= d_{1} - \sigma \sqrt{T}
-\end{align}
+d_{1} = \frac{\ln{(S/K)} + (r - \delta + \frac{1}{2} \sigma^{2}) T}{\sigma \sqrt{T}} 
+$$
+$$
+d_{2} = d_{1} - \sigma \sqrt{T}
 $$
 
 In Black-Scholes Merton formula, we can interpret Delta as a share-equivalent. Black-Scholes Merton formula tells us both option price and what position in the stock is equivalent to the option. 
@@ -111,9 +111,7 @@ Market-makers could use Delta-hedging to control risk. Market-makers could compu
 Delta measures the option price changes when stock price changes, also Delta represents number of shares in the portfolio that replicates the option.
 
 $$
-\begin{align}
-\mbox{Call Delta} &= \frac{\partial C(S, K, \sigma, r, T - t, \delta)}{\partial S} = e^{-\delta (T - t)} N(d_{1}) 
-\end{align}
+Call Delta= \frac{\partial C(S, K, \sigma, r, T - t, \delta)}{\partial S} = e^{-\delta (T - t)} N(d_{1}) 
 $$
 
 ```{Rcpp eval = FALSE}
@@ -133,9 +131,7 @@ For a call option, Delta is positive. When the stock price increases, the call o
 Gamma shows the rate change of Delta when stock price changes by 1 dolloar.  
  
 $$
-\begin{align}
-\mbox{Call Gamma} &=  \frac{\partial^{2} C(S, K, \sigma, r, T - t, \delta)}{\partial S^{2}} = \frac{e^{-\delta (T - t)} N^{\prime}(d_{1})}{S \sigma \sqrt{T - t}} 
-\end{align}
+Call Gamma=  \frac{\partial^{2} C(S, K, \sigma, r, T - t, \delta)}{\partial S^{2}} = \frac{e^{-\delta (T - t)} N^{\prime}(d_{1})}{S \sigma \sqrt{T - t}} 
 $$
 
 ```{Rcpp eval = FALSE}
@@ -171,11 +167,11 @@ The main purpose for the Delta-hedging is to help market-makers to maintain a De
 
 And now from Clewlow and Carverhill, we are going to see how they using Greeks as control variates to reduce the standard deviation and improve the efficiency. 
 
-![This is the call payoff from Monte Carlo simulation, used 252 time steps, and 100 simulation.](images/Naive.PNG)
+![This is the call payoff from Monte Carlo simulation, used 252 time steps, and 100 simulations.](images/Naive.PNG)
 
-![This is the call payoff from Delta-Hedged Monte Carlo simulation, used 252 time steps, and 100 simulation.](images/DeltaHedging.PNG)
+![This is the call payoff from Delta Hedged Monte Carlo simulation, used 252 time steps, and 100 simulations.](images/DeltaHedging.PNG)
 
-![This is the call payoff from Delta-Hedged Monte Carlo simulation, used 252 time steps, and 100 simulation.](images/DeltaGammaHedging.PNG)
+![This is the call payoff from Delta-Gamma Hedged Monte Carlo simulation, used 252 time steps, and 100 simulations.](images/DeltaGammaHedging.PNG)
 
 From the graph above, we could easily find after using Delta as control variate, the result of call payoff has an obvious improvement. The sample has a smaller standard deviation, and after using Delta-Gamma as control variates, the standard deviation even gets smaller. If you only using Monte Carlo simulation without control variates, you will need a 100 times larger sample size to get the standard deviation as same as the Delta-hedging Monte Carlo. 
 
@@ -243,7 +239,7 @@ for (auto i = 0; i < numReps; ++i)
 	}
 ```
 
-From the first "for loop" in the code above, we calculate the Delta for each time step from the Black-Scholes Delta formula. Delta will rebalance discretely for each step for every simulation. We will get a "M*N" matrix for the Delta. And then using the Delta to get the value of control variates. The authors choose the beta1 = -1 which is the appropriate value for this example where they have the exact Delta. The variable "erddt" allow us to compute $E[S_{t_{i+1}}]$ efficiently. 
+From the first "for loop" in the code above, we calculate the Delta for each time step from the Black-Scholes Delta formula. Delta will rebalance discretely for each step for every simulation. We will get the Delta for each time step. And then using the Delta to get the value of control variates. The authors choose the beta1 = -1 which is the appropriate value for this example where they have the exact Delta. The variable "erddt" allow us to compute $E[S_{t_{i+1}}]$ efficiently. 
 
 ## Subsection B Delta-Gamma control variates
 
@@ -285,10 +281,10 @@ $$
 Those pictures are the results from the Jump world, and we could see control variates did a great job to reduce the variance of the sample. 
 ![This is the call payoff from the Jump world, used 252 time steps, and 100 simulations.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\Jump.png)
 
-![This is the call payoff from Jump world with Delta-hedging, used 252 time steps, and 100 simulations.](images/DeltaHedgingJump.PNG)
+![This is the call payoff from Jump world with Delta Hedged, used 252 time steps, and 100 simulations.](images/DeltaHedgingJump.PNG)
 
 
-![This is the call payoff from Jump world with Delta-Gamma-hedging, used 252 time steps, and 100 simulations.](images/DeltaGammaHedgingJump.PNG)
+![This is the call payoff from Jump world with Delta-Gamma Hedged, used 252 time steps, and 100 simulations.](images/DeltaGammaHedgingJump.PNG)
 
 
 # Conclusion
