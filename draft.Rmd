@@ -50,7 +50,6 @@ The underlying method is to estimate the error of each trial by using the price 
 
 Because we are using the same random numbers to estimate the option, the errors in the estimated arithmetic and geometric prices are correlated. When the estimated price for the geometric option is high, it should have a high arithmetic price as well. We can use information on the error in the geometric price to adjust our estimate of the arithmetic price.
 
-
 $$
 A^* = \bar A + \beta(G-\bar G)
 $$
@@ -155,6 +154,7 @@ C(S_{t+h} )= C(S_t) + \epsilon \Delta(S_t) + \frac{1}{2}\epsilon^2\Gamma(S_t))
 $$
 
 The Delta approximation is a straight-line tangent to the option price curve and is always below the option price curve. The Delta-Gamma approximation uses the squared stock price change, which generates a curve more closely approximating the option price curve. 
+
 Using hedges as control variates was first described by Clewlow and Carverhill. When pricing a European call option, the distribution of the pay-off has a large standard deviation. If we want to estimate the call value as the mean of a number of Monte Carlo simulations then standard error of the mean will be large. When using Delta control variate, the pay-off of the hedged portfolio has a much smaller standard deviation. 
 
 $$
@@ -283,9 +283,7 @@ Those pictures are the results from the Jump world, and we could see control var
 
 ![This is the call payoff from Jump world with Delta Hedged, used 252 time steps, and 100 simulations.](images/DeltaHedgingJump.PNG)
 
-
 ![This is the call payoff from Jump world with Delta-Gamma Hedged, used 252 time steps, and 100 simulations.](images/DeltaGammaHedgingJump.PNG)
-
 
 # Conclusion
 
