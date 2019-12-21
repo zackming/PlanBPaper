@@ -279,7 +279,7 @@ $$
 $$
 
 Those pictures are the results from the Jump world, and we could see control variates did a great job to reduce the variance of the sample. 
-![This is the call payoff from the Jump world, used 252 time steps, and 100 simulations.](C:\Users\profile\Desktop\zhaoming\Rmd-Template\Paper\Jump.png)
+![This is the call payoff from the Jump world, used 252 time steps, and 100 simulations.](images/Jump.png)
 
 ![This is the call payoff from Jump world with Delta Hedged, used 252 time steps, and 100 simulations.](images/DeltaHedgingJump.PNG)
 
